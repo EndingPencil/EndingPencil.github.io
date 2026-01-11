@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Log | [Your Name]</title>
+
+    <link rel="stylesheet" href="https://latex.now.sh/style.css">
+
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        body {
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        /* NAVIGATION STYLE */
+        nav {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #ccc;
+        }
+
+            nav a {
+                margin: 0 15px;
+                text-decoration: none;
+                color: #000;
+            }
+
+                nav a.active {
+                    font-weight: bold;
+                }
+
+        /* GUITAR TAB STYLING */
+        /* This ensures tabs look like a typewriter/text file */
+        .tab-block {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre; /* Keeps spacing exact */
+            overflow-x: auto; /* Allows scrolling on small screens */
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* AUDIO PLAYER STYLING */
+        audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="math.html">Math</a>
+        <a href="music.html" class="active">Music</a>
+    </nav>
+
+    <header>
+        <h1>Music Theory & Guitar Log</h1>
+        <p class="author">Exploring Harmony and The Fretboard</p>
+    </header>
+
+    <main>
+        <article>
+            <h2>Topic 1: The Harmonic Series</h2>
+            <p>
+                Started studying the physics of intervals today. It is fascinating that the Perfect Fifth corresponds to a frequency ratio of $3:2$.
+            </p>
+            <p>
+                If our fundamental frequency is $f$, the overtones are:
+            </p>
+
+            $$ f, 2f, 3f, 4f, 5f, \dots $$
+
+            <p>
+                This explains why the Major Triad ($4:5:6$ ratio) sounds so stable.
+            </p>
+        </article>
+
+        <hr>
+
+        <article>
+            <h2>Session 2: Jazz Standards & Voice Leading</h2>
+            <p>
+                Working on "Autumn Leaves" but focusing on voice leading the thirds and sevenths. Here is a shell voicing idea I was working on for the $ii - V - I$ in G minor ($A^{\varnothing}7 \to D7_{alt} \to Gm6$).
+            </p>
+
+            <div class="tab-block">
+                Cm7       F7        Bbmaj7
+                e|-----------------------------|
+                B|--4---------4---------3------|
+                G|--3---------2---------2------|
+                D|--5---------1---------3------|
+                A|--3-------------------1------|
+                E|------------1----------------|
+            </div>
+
+            <p>
+                I recorded a quick improvisation over these changes to check my phrasing.
+            </p>
+
+            <figure>
+                <figcaption>Improvisation Take 1:</figcaption>
+                <audio controls src="path-to-your-audio-file.mp3">
+                    Your browser does not support the audio element.
+                </audio>
+            </figure>
+        </article>
+
+        <hr>
+
+        <article>
+            <h2>Topic 3: Negative Harmony</h2>
+            <p>
+                Looking into Ernst Levy's concept of negative harmony. If we rotate the circle of fifths around the axis between $C$ and $G$ (the root and the fifth), we map intervals to their "negative" counterparts.
+            </p>
+            <p>
+                The mapping function $N(x)$ can be described as reflecting the pitch class across the axis.
+            </p>
+            <p>
+                $$ C \leftrightarrow G $$
+                $$ E \leftrightarrow Eb $$
+            </p>
+            <p>
+                Thus, a C Major triad $\{C, E, G\}$ maps to a C Minor triad (inverted) $\{G, Eb, C\}$.
+            </p>
+        </article>
+
+    </main>
+
+</body>
+</html>
