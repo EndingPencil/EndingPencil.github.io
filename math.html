@@ -35,6 +35,7 @@
         <a href="index.html" style="margin: 0 15px; text-decoration: none; color: #000;">Home</a>
         <a href="math.html" style="margin: 0 15px; text-decoration: none; color: #000; font-weight: bold;">Math</a>
         <a href="music.html" style="margin: 0 15px; text-decoration: none; color: #000;">Music</a>
+        <a href="sim.html" style="margin: 0 15px; text-decoration: none; color: #000;">Traffic Sim</a>
     </nav>
 
     <header>
@@ -44,26 +45,49 @@
     </header>
 
     <hr> <main>
-        <article>
-            <h2>Problem 1: The Gaussian Integral</h2>
-            <p>
-                Today I worked on solving the Gaussian integral. The goal is to evaluate the following integral over the entire real line:
-            </p>
+    <div class="abstract">
+        <p>
+            Currently interested in solving Infinite Series and Combinotorics
+        </p>
+    </div>
+    <article>
+        <h2>Problem 1: Johann Bernoulli Identity</h2>
+        <p>
+            I saw this problem and it's proof around the internet and wanted to try it my way. Firstly I tried to substitue different forms to replace $x^{-x}$ but eventually ended up with just the usual way of taking logarithm.
 
-            $$ I = \int_{-\infty}^{\infty} e^{-x^2} \, dx $$
+        </p>
 
-            <h3>The Solution</h3>
-            <p>
-                The trick is to square the integral and switch to polar coordinates. If we let $I$ be the integral, then:
-            </p>
+        $$\int_{0}^{1}x^{-x}dx=\sum_{n=1}^{\infty}n^{-n}$$
+        <h3>The Solution</h3>
+        <p>
+            The trick is to square the integral and switch to polar coordinates. If we let $I$ be the integral, then:
+        </p>
+        <p>
+            Simplifying,
+            $$I=\int_{0}^{1}e^{-x\ln x}\space dx$$
+        </p>
+        <p>
+            I realise at this point there is two paths you could go by, I could either use a standard result from Taylor's Expansion or keep substituting for 'x' and arrive directly with a rather complex Series expansion. While the substitution method seemed the easy way out, I chose to stick with Taylor's Result for a cleaner solution.
+
+        </p>
+        <p>
+            click here to see The Substitution Method.
+        </p>
+
+        <p>$$e^u={\sum_{k=0}^{\infty}} \frac{u^k}{k!}$$</p>
+        <p>Substitute, $u=-xlnx$</p>
+        $$e^{-x \ln x} = \sum_{k=0}^{\infty} \frac{(-x \ln x)^k}{k!} = \sum_{k=0}^{\infty} \frac{(-1)^k x^k (\ln x)^k}{k!}$$
 
 
-            <div class="proof-end"></div>
-        </article>
 
-        <hr>
 
-    </main>
+
+        <div class="proof-end"></div>
+    </article>
+
+    <hr>
+
+</main>
 
 </body>
 </html>
