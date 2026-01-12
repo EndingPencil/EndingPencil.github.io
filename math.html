@@ -78,7 +78,19 @@
         <p>Substitute, $u=-xlnx$</p>
         $$e^{-x \ln x} = \sum_{k=0}^{\infty} \frac{(-x \ln x)^k}{k!} = \sum_{k=0}^{\infty} \frac{(-1)^k x^k (\ln x)^k}{k!}$$
 
+        <p>At this point you might be clueless not knowing what to do next. That's when DCT(Domain Convergent Theorem) comes to use.</p>
+        <p>Since our integral $\int x^{-x}$ is finite and partial sums are always less than $x^{-x}$. We can swap with integral now.</p>
+        $$I = \sum_{k=0}^{\infty} \frac{(-1)^k}{k!} \int_0^1 x^k (\ln x)^k \, dx$$
 
+        <p>A critical mistake I made at this point was not considering the logic of including constant while expanding the powers.</p>
+        $$\sum \frac{f^{(n)}(a)}{n!}(x-a)^n$$
+
+        <p>Let's solve the integral seperatly here by calling it $I_2$</p>
+        $$I_2 = \int_0^1 x^k (\ln x)^k \, dx$$
+        <p>Let $u = -\ln x$., This implies $x = e^{-u}$. Therefore, $dx = -e^{-u} \, du$. Bounds: When $x=0, u=\infty$. When $x=1, u=0$.</p>
+        $$I_2 = \int_{\infty}^0 (e^{-u})^k (-u)^k (-e^{-u}) \, du$$
+        <p>Simplifying exponentail terms ($e^{-uk} \cdot e^{-u} = e^{-(k+1)u}$):</p>
+        $$I_2 = (-1)^k \int_0^{\infty} e^{-(k+1)u} u^k \, du$$
 
 
 
