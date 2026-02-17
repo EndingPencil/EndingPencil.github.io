@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Sim</title>
+    
+    <link rel="stylesheet" href="https://latex.now.sh/style.css">
+
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        body {
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        /* NAVIGATION */
+        nav {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #ccc;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #000;
+        }
+        nav a.active {
+            font-weight: bold;
+        }
+
+        /* CODE BLOCK STYLING */
+        pre {
+            background: #f4f4f4;
+            border: 1px solid #ddd;
+            padding: 15px;
+            overflow-x: auto;
+            border-radius: 4px;
+        }
+        code {
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+        }
+
+        /* MEDIA CONTAINER (For GIFs/Videos of the sim) */
+        .media-container {
+            text-align: center;
+            margin: 2rem 0;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background: #fff;
+        }
+        .media-container img, .media-container video {
+            max-width: 100%;
+            height: auto;
+        }
+        .caption {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: #555;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="math.html">Math</a>
+        <a href="music.html">Music</a>
+        <a href="simulation.html" class="active">Traffic Sim</a>
+    </nav>
+
+    <header>
+        <h1>Microscopic Traffic Flow Simulation</h1>
+        <p class="author">A Python-based study on the Intelligent Driver Model (IDM)</p>
+    </header>
+
+    <main>
+        <div class="abstract">
+            <p><strong>Abstract.</strong> This project simulates highway traffic flow to observe the emergence of "phantom traffic jams"—jams that appear without a bottleneck, caused purely by driver reaction times and braking waves.</p>
+        </div>
+
+        <section>
+            <h2>1. The Mathematical Model</h2>
+            <p>
+                To simulate realistic car-following behavior, I utilized the <strong>Intelligent Driver Model (IDM)</strong>. The acceleration $\dot{v}$ of a vehicle $\alpha$ is given by the differential equation:
+            </p>
+
+            $$ \dot{v}_\alpha = a \left[ 1 - \left( \frac{v_\alpha}{v_0} \right)^\delta - \left( \frac{s^*(v_\alpha, \Delta v_\alpha)}{s_\alpha} \right)^2 \right] $$
+
+            <p>
+                Where $v_0$ is the desired velocity, $s_\alpha$ is the actual gap to the car in front, and $s^*$ is the desired minimum gap, calculated as:
+            </p>
+
+            $$ s^*(v, \Delta v) = s_0 + v T + \frac{v \Delta v}{2\sqrt{ab}} $$
+
+            <p>
+                This allows the agent to brake intelligently when approaching a slower vehicle ($ \Delta v > 0 $).
+            </p>
+        </section>
+
+        <section>
+            <h2>2. Implementation</h2>
+            <p>
+                The simulation uses an Agent-Based Modeling approach. Each vehicle is an object with state variables $(x, v, a)$.
+            </p>
+
+            <pre><code class="language-python">class Vehicle:
+    def update(self, lead_vehicle, dt):
+        """
+        Updates velocity and position based on IDM.
+        """
+        delta_v = self.v - lead_vehicle.v
+        s = lead_vehicle.x - self.x - lead_vehicle.length
+        
+        # Calculate desired gap term
+        s_star = self.s0 + (self.v * self.T) + \
+                 (self.v * delta_v) / (2 * np.sqrt(self.a * self.b))
+        
+        # Calculate acceleration
+        acc = self.a * (1 - (self.v / self.v0)**4 - (s_star / s)**2)
+        
+        # Euler integration
+        self.v += acc * dt
+        self.x += self.v * dt</code></pre>
+        </section>
+
+        <section>
+            <h2>3. Results & Visualization</h2>
+            <p>
+                Below is a visualization of the simulation running with $N=50$ cars on a circular track. Notice how a single car braking slightly causes a shockwave that propagates backward through the chain.
+            </p>
+
+            <div class="media-container">
+                <img src="traffic-demo.gif" alt="Traffic Simulation GIF">
+                <div class="caption">Figure 1: Shockwave propagation in a closed loop system.</div>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html>
